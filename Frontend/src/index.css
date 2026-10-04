@@ -1,0 +1,153 @@
+@import "tailwindcss";
+
+/* dark mode: public wrapper par .dark class lagti hai */
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --color-primary: #0f4a3d;
+  --color-gold: #a8864a;
+  --color-gold-soft: #dcc896;
+  --color-deep: #072920;
+  --font-display: "Cormorant Garamond", Georgia, serif;
+  --font-sans: "Manrope", system-ui, sans-serif;
+}
+
+/* light/dark ke hisaab se badalne wale colors */
+@theme inline {
+  --color-canvas: var(--canvas);
+  --color-surface: var(--surface);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-line: var(--line);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+body {
+  margin: 0;
+  font-family: "Manrope", system-ui, sans-serif;
+  background: #f8fafc;
+  color: #0f172a;
+}
+
+/* Sirf public site par theme lagta hai (admin panel par asar nahi) */
+.theme-public {
+  --canvas: #f3f7f5;
+  --surface: #ffffff;
+  --ink: #0b1f1a;
+  --muted: #52665d;
+  --line: rgba(11, 31, 26, 0.14);
+  background: var(--canvas);
+  color: var(--ink);
+}
+.theme-public.dark {
+  --canvas: #05110d;
+  --surface: #0b1d17;
+  --ink: #eef3f0;
+  --muted: #9bb2a8;
+  --line: rgba(238, 243, 240, 0.16);
+}
+.theme-public :focus-visible {
+  outline: 2px solid var(--color-gold);
+  outline-offset: 3px;
+}
+
+/* Molecule lattice (hexagon) pattern */
+.bg-hex {
+  background-image: url("data:image/svg+xml,%3Csvg width='28' height='49' viewBox='0 0 28 49' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill-rule='evenodd'%3E%3Cg fill='%23a8864a' fill-opacity='0.16' fill-rule='nonzero'%3E%3Cpath d='M13.99 9.25l13 7.5v15l-13 7.5L1 31.75v-15l12.99-7.5zM3 17.9v12.7l10.99 6.34 11-6.35V17.9l-11-6.34L3 17.9zM0 15l12.98-7.5V0h-2v6.35L0 12.69v2.3zm0 18.5L12.98 41v8h-2v-6.85L0 35.81v-2.3zM15 0v7.5L27.99 15H28v-2.31h-.01L17 6.35V0h-2zm0 49v-8l12.99-7.5H28v2.31h-.01L17 42.15V49h-2z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
+
+@layer components {
+  .container-x {
+    @apply mx-auto w-full max-w-6xl px-5 sm:px-8;
+  }
+  .section {
+    @apply scroll-mt-16 py-20 sm:py-28;
+  }
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 rounded-full bg-primary px-7 py-3 text-sm font-semibold tracking-wide text-white transition duration-300 hover:brightness-125;
+  }
+  .btn-outline {
+    @apply inline-flex items-center justify-center gap-2 rounded-full border border-gold/60 px-7 py-3 text-sm font-semibold tracking-wide text-ink transition duration-300 hover:bg-gold/10;
+  }
+  .btn-sm {
+    @apply px-5 py-2;
+  }
+  .input-lux {
+    @apply w-full rounded-lg border border-line bg-canvas px-4 py-3 text-sm text-ink outline-none transition placeholder:text-muted/70 focus:border-gold;
+  }
+  /* light me emerald, dark me gold */
+  .text-accent {
+    color: var(--color-primary);
+  }
+  .dark .text-accent {
+    color: var(--color-gold);
+  }
+  /* chhote gold text ke liye (contrast achha rehta hai) */
+  .text-brass {
+    color: #7a5f2c;
+  }
+  .dark .text-brass {
+    color: var(--color-gold-soft);
+  }
+  .dark .btn-primary {
+    background: var(--color-gold);
+    color: #072920;
+  }
+}
+
+/* Blog content styling */
+.prose-lux {
+  line-height: 1.85;
+  color: var(--ink);
+}
+.prose-lux h2 {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  font-weight: 600;
+  margin: 2.2rem 0 0.8rem;
+}
+.prose-lux h3 {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin: 1.8rem 0 0.6rem;
+}
+.prose-lux p {
+  margin: 1rem 0;
+  color: var(--muted);
+}
+.prose-lux a {
+  color: var(--color-gold);
+  text-decoration: underline;
+}
+.prose-lux ul {
+  list-style: disc;
+  padding-left: 1.4rem;
+  margin: 1rem 0;
+  color: var(--muted);
+}
+.prose-lux ol {
+  list-style: decimal;
+  padding-left: 1.4rem;
+  margin: 1rem 0;
+  color: var(--muted);
+}
+.prose-lux blockquote {
+  border-left: 2px solid var(--color-gold);
+  padding-left: 1rem;
+  font-style: italic;
+  margin: 1.5rem 0;
+}
+.prose-lux img {
+  border-radius: 0.5rem;
+  margin: 1.5rem 0;
+  max-width: 100%;
+}
