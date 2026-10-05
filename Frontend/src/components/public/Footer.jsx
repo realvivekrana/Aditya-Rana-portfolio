@@ -1,11 +1,41 @@
-import { FiArrowUp } from "react-icons/fi";
+import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
+import { FiArrowUp, FiLock, FiMail, FiX } from "react-icons/fi";
 import { useSite } from "../../context/SiteContext";
+import useAuth from "../../hooks/useAuth";
+import { getErrorMessage } from "../../api/services";
 import SocialLinks from "../common/SocialLinks";
 
 const Footer = () => {
   const { profile, settings } = useSite();
+  const { admin, login } = useAuth();
+  const navigate = useNavigate();
+
+  const [open, setOpen] = useState(false);
+  const [form, setForm] = useState({ email: "", password: "" });
+  const [submitting, setSubmitting] = useState(false);
+
   const name = profile.fullName || settings.siteTitle || "Portfolio";
   const text = settings.footerText || `© ${new Date().getFullYear()} ${name}. All rights reserved.`;
+
+  const handleChange = (e) => setForm({ ...form, [e.target.name]: e.target.value });
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setSubmitting(true);
+    try {
+      await login(form.email, form.password);
+      toast.success("Welcome back!");
+      setForm({ email: "", password: "" });
+      setOpen(false);
+      navigate("/admin/dashboard");
+    } catch (error) {
+      toast.error(getErrorMessage(error));
+    } finally {
+      setSubmitting(false);
+    }
+  };
 
   return (
     <footer className="bg-deep pb-[max(2rem,env(safe-area-inset-bottom))] pt-14 text-white">
@@ -27,6 +57,78 @@ const Footer = () => {
             Back to top
           </button>
         </div>
+
+        {/* Admin access */}
+        {admin ? (
+          <Link
+            to="/admin/dashboard"
+            className="flex min-h-11 items-center gap-1.5 px-3 text-xs text-gold transition hover:opacity-80"
+          >
+            <FiLock size={12} />
+            Dashboard
+          </Link>
+        ) : !open ? (
+          <button
+            onClick={() => setOpen(true)}
+            className="flex min-h-11 items-center gap-1.5 px-3 text-xs text-white/35 transition hover:text-gold"
+          >
+            <FiLock size={12} />
+            Admin
+          </button>
+        ) : (
+          <form
+            onSubmit={handleSubmit}
+            className="w-full max-w-xs space-y-3 rounded-xl border border-white/10 bg-white/5 p-4 text-left"
+          >
+            <div className="flex items-center justify-between">
+              <span className="text-xs font-medium uppercase tracking-wide text-white/60">Admin Login</span>
+              <button
+                type="button"
+                onClick={() => setOpen(false)}
+                aria-label="Close"
+                className="text-white/50 transition hover:text-gold"
+              >
+                <FiX size={16} />
+              </button>
+            </div>
+
+            <div className="flex items-center gap-2 rounded-lg border border-white/15 px-3 focus-within:border-gold">
+              <FiMail size={14} className="text-white/40" />
+              <input
+                type="email"
+                name="email"
+                value={form.email}
+                onChange={handleChange}
+                required
+                autoComplete="username"
+                placeholder="Email"
+                className="w-full bg-transparent py-2 text-sm text-white outline-none placeholder:text-white/30"
+              />
+            </div>
+
+            <div className="flex items-center gap-2 rounded-lg border border-white/15 px-3 focus-within:border-gold">
+              <FiLock size={14} className="text-white/40" />
+              <input
+                type="password"
+                name="password"
+                value={form.password}
+                onChange={handleChange}
+                required
+                autoComplete="current-password"
+                placeholder="Password"
+                className="w-full bg-transparent py-2 text-sm text-white outline-none placeholder:text-white/30"
+              />
+            </div>
+
+            <button
+              type="submit"
+              disabled={submitting}
+              className="w-full rounded-lg bg-gold py-2 text-sm font-medium text-deep transition hover:opacity-90 disabled:opacity-60"
+            >
+              {submitting ? "Signing in..." : "Sign in"}
+            </button>
+          </form>
+        )}
       </div>
     </footer>
   );

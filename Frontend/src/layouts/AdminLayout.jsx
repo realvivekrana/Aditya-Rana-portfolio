@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link, NavLink, Outlet, useNavigate } from "react-router-dom";
+import { Link, NavLink, Outlet, useLocation, useNavigate } from "react-router-dom";
 import {
   FiAward,
   FiBookOpen,
@@ -19,6 +19,7 @@ import {
   FiX,
 } from "react-icons/fi";
 import useAuth from "../hooks/useAuth";
+import BackButton from "../components/common/BackButton";
 
 const links = [
   { to: "/admin/dashboard", label: "Dashboard", icon: FiHome },
@@ -39,6 +40,8 @@ const links = [
 const AdminLayout = () => {
   const { admin, logout } = useAuth();
   const navigate = useNavigate();
+  const { pathname } = useLocation();
+  const showBack = pathname !== "/admin/dashboard";
   const [open, setOpen] = useState(false);
 
   const handleLogout = () => {
@@ -88,10 +91,12 @@ const AdminLayout = () => {
       {/* Main */}
       <div className="lg:pl-64">
         <header className="sticky top-0 z-20 flex h-16 items-center justify-between bg-white px-4 shadow-sm">
-          <button className="lg:hidden" onClick={() => setOpen(true)}>
-            <FiMenu size={22} />
-          </button>
-          <div className="hidden lg:block" />
+          <div className="flex items-center gap-3">
+            <button className="lg:hidden" onClick={() => setOpen(true)}>
+              <FiMenu size={22} />
+            </button>
+            {showBack && <BackButton to="/admin/dashboard" label="Back" />}
+          </div>
 
           <div className="flex items-center gap-4">
             <Link to="/" target="_blank" className="text-sm text-slate-500 hover:text-primary">

@@ -5,6 +5,7 @@ import { FiLock, FiMail } from "react-icons/fi";
 import useAuth from "../../hooks/useAuth";
 import { getErrorMessage } from "../../api/services";
 import Loader from "../../components/common/Loader";
+import BackButton from "../../components/common/BackButton";
 
 const Login = () => {
   const { admin, loading, login } = useAuth();
@@ -35,7 +36,10 @@ const Login = () => {
   };
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-slate-100 px-4">
+    <div className="relative flex min-h-screen items-center justify-center bg-slate-100 px-4">
+      <div className="absolute left-4 top-4">
+        <BackButton to="/" label="Back to site" />
+      </div>
       <form onSubmit={handleSubmit} className="w-full max-w-sm space-y-5 rounded-2xl bg-white p-8 shadow-lg">
         <div className="text-center">
           <h1 className="text-2xl font-bold">Admin Login</h1>
