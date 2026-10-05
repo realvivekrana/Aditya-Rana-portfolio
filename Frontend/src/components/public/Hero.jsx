@@ -74,8 +74,6 @@ const Hero = () => {
             {profile.resume?.url && (
               <a
                 href={profile.resume.url}
-                target="_blank"
-                rel="noopener noreferrer"
                 className="inline-flex items-center justify-center gap-2 rounded-full border border-gold/60 px-7 py-3 text-sm font-semibold tracking-wide text-white transition hover:bg-gold/10"
               >
                 <FiDownload size={16} />

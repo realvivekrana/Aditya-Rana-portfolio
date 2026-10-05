@@ -76,7 +76,7 @@ const ManageProfile = () => {
   }
 
   const input = (name, label, props = {}) => (
-    <div className={props.full ? "sm:col-span-2" : ""}>
+    <div key={name} className={props.full ? "sm:col-span-2" : ""}>
       <label htmlFor={`p-${name}`} className="label-admin">
         {label}
       </label>
@@ -118,8 +118,6 @@ const ManageProfile = () => {
               {!resume && data?.resume?.url && (
                 <a
                   href={data.resume.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
                   className="flex items-center gap-1.5 text-sm text-primary underline"
                 >
                   View current resume <FiExternalLink size={14} />

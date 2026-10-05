@@ -51,8 +51,6 @@ const Publications = () => {
                     {pub.link && (
                       <a
                         href={ensureUrl(pub.link)}
-                        target="_blank"
-                        rel="noopener noreferrer"
                         className="mt-4 inline-flex min-h-10 items-center gap-2 text-sm font-semibold text-accent hover:text-gold"
                       >
                         Read more <FiExternalLink size={15} />

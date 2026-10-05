@@ -1,32 +1,12 @@
-# Dependencies
-node_modules/
-**/node_modules/
-
-# Environment variables
-.env
-.env.*
-!.env.example
-
-# Build
-dist/
-build/
-**/dist/
-**/build/
-
-# Logs
-*.log
-npm-debug.log*
-yarn-debug.log*
-pnpm-debug.log*
-
-# OS
-.DS_Store
-Thumbs.db
-
-# Editor
-.vscode/
-.idea/
-
-# Cache
-.cache/
-.parcel-cache/
+{
+  "name": "aditya-rana-portfolio",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Aditya Rana portfolio: React + Vite frontend and Express + MongoDB backend",
+  "scripts": {
+    "dev:frontend": "npm --prefix Frontend run dev",
+    "dev:backend": "npm --prefix Backend run dev",
+    "build": "npm --prefix Frontend run build",
+    "install:all": "npm --prefix Frontend install && npm --prefix Backend install"
+  }
+}

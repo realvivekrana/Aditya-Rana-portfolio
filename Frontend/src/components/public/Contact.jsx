@@ -87,8 +87,7 @@ const Contact = () => {
           <Reveal delay={0.1}>
             <form
               onSubmit={handleSubmit}
-              className="space-y-4 rounded-2xl border border-line bg-surface p-5 sm:p-8"
-              noValidate={false}
+              className="relative space-y-4 overflow-hidden rounded-2xl border border-line bg-surface p-5 sm:p-8"
             >
               <div className="grid gap-4 sm:grid-cols-2">
                 <label className="block">

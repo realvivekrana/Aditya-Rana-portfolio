@@ -64,7 +64,7 @@ const AdminLayout = () => {
       >
         <div className="flex h-16 items-center justify-between px-5">
           <span className="text-lg font-bold text-white">Admin Panel</span>
-          <button className="lg:hidden" onClick={() => setOpen(false)}>
+          <button className="lg:hidden" onClick={() => setOpen(false)} aria-label="Close menu">
             <FiX size={22} />
           </button>
         </div>
@@ -90,25 +90,26 @@ const AdminLayout = () => {
 
       {/* Main */}
       <div className="lg:pl-64">
-        <header className="sticky top-0 z-20 flex h-16 items-center justify-between bg-white px-4 shadow-sm">
-          <div className="flex items-center gap-3">
-            <button className="lg:hidden" onClick={() => setOpen(true)}>
+        <header className="sticky top-0 z-20 flex h-16 items-center justify-between gap-2 bg-white px-3 shadow-sm sm:px-4">
+          <div className="flex min-w-0 items-center gap-2 sm:gap-3">
+            <button className="flex h-10 w-10 items-center justify-center lg:hidden" onClick={() => setOpen(true)} aria-label="Open menu">
               <FiMenu size={22} />
             </button>
             {showBack && <BackButton to="/admin/dashboard" label="Back" />}
           </div>
 
-          <div className="flex items-center gap-4">
-            <Link to="/" target="_blank" className="text-sm text-slate-500 hover:text-primary">
+          <div className="flex shrink-0 items-center gap-2 sm:gap-4">
+            <Link to="/" className="text-sm text-slate-500 hover:text-primary">
               View site
             </Link>
             <span className="hidden text-sm font-medium sm:block">{admin?.name}</span>
             <button
               onClick={handleLogout}
-              className="flex items-center gap-2 rounded-lg bg-slate-100 px-3 py-2 text-sm hover:bg-slate-200"
+              aria-label="Logout"
+              className="flex min-h-10 items-center gap-2 rounded-lg bg-slate-100 px-3 py-2 text-sm hover:bg-slate-200"
             >
               <FiLogOut size={16} />
-              Logout
+              <span className="hidden min-[400px]:inline">Logout</span>
             </button>
           </div>
         </header>

@@ -26,8 +26,6 @@ const SocialLinks = ({ socials = {}, className = "", tone = "light" }) => {
         <li key={key}>
           <a
             href={ensureUrl(socials[key])}
-            target="_blank"
-            rel="noopener noreferrer"
             aria-label={label}
             className={`flex h-11 w-11 items-center justify-center rounded-full border transition ${toneClass}`}
           >

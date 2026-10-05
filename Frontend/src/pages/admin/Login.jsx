@@ -36,11 +36,11 @@ const Login = () => {
   };
 
   return (
-    <div className="relative flex min-h-screen items-center justify-center bg-slate-100 px-4">
+    <div className="relative flex min-h-screen items-center justify-center bg-slate-100 px-4 pb-8 pt-20">
       <div className="absolute left-4 top-4">
         <BackButton to="/" label="Back to site" />
       </div>
-      <form onSubmit={handleSubmit} className="w-full max-w-sm space-y-5 rounded-2xl bg-white p-8 shadow-lg">
+      <form onSubmit={handleSubmit} className="w-full max-w-sm space-y-5 rounded-2xl bg-white p-6 shadow-lg sm:p-8">
         <div className="text-center">
           <h1 className="text-2xl font-bold">Admin Login</h1>
           <p className="mt-1 text-sm text-slate-500">Sign in to manage your portfolio</p>

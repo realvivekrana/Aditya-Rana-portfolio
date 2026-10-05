@@ -17,7 +17,14 @@ const Navbar = () => {
   const [open, setOpen] = useState(false);
   const [active, setActive] = useState("");
 
-  const links = useMemo(() => getVisibleSections(profile, settings, data), [profile, settings, data]);
+  // "Home" replaces the old "About" menu item and scrolls to the top (hero) section
+  const links = useMemo(
+    () => [
+      { id: "home", label: "Home" },
+      ...getVisibleSections(profile, settings, data).filter((section) => section.id !== "about"),
+    ],
+    [profile, settings, data]
+  );
   const name = profile.fullName || settings.siteTitle || "Portfolio";
 
   useEffect(() => {

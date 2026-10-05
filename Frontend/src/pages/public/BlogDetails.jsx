@@ -27,7 +27,7 @@ const BlogDetails = () => {
   const html = useMemo(() => {
     if (!post?.content) return "";
     const raw = looksLikeHtml(post.content) ? post.content : textToHtml(post.content);
-    return DOMPurify.sanitize(raw, { ADD_ATTR: ["target"] });
+    return DOMPurify.sanitize(raw, { FORBID_ATTR: ["target"] });
   }, [post]);
 
   if (loading) return <Loader fullScreen />;

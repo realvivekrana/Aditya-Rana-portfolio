@@ -81,8 +81,6 @@ const Projects = () => {
                   {project.link && (
                     <a
                       href={ensureUrl(project.link)}
-                      target="_blank"
-                      rel="noopener noreferrer"
                       className="mt-5 inline-flex min-h-10 items-center gap-2 pt-1 text-sm font-semibold text-accent hover:text-gold"
                     >
                       View project <FiExternalLink size={15} />
