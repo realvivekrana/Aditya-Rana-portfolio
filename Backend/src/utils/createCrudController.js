@@ -3,7 +3,7 @@ import ApiResponse from "./ApiResponse.js";
 import asyncHandler from "./asyncHandler.js";
 import { uploadToCloudinary, deleteFromCloudinary } from "../config/cloudinary.js";
 
-// JSON array ya comma-separated string dono se array banata hai
+// Builds an array from a JSON array or a comma-separated string
 const parseArray = (value) => {
   if (Array.isArray(value)) return value;
   try {
@@ -37,7 +37,7 @@ const createCrudController = (
     return data;
   };
 
-  // Public: sirf published
+  // Public: published items only
   const getAll = asyncHandler(async (req, res) => {
     const items = await Model.find({ isPublished: true }).sort({
       order: 1,
@@ -46,7 +46,7 @@ const createCrudController = (
     res.status(200).json(new ApiResponse(200, items));
   });
 
-  // Admin: draft + published dono
+  // Admin: drafts and published items
   const getAllAdmin = asyncHandler(async (req, res) => {
     const items = await Model.find().sort({ order: 1, createdAt: -1 });
     res.status(200).json(new ApiResponse(200, items));
@@ -63,7 +63,7 @@ const createCrudController = (
       data.image = await uploadToCloudinary(req.file.buffer, folder, "image");
     }
 
-    // naya item list ke end me jaye
+    // New items go to the end of the list
     const last = await Model.findOne().sort({ order: -1 }).select("order");
     data.order = last ? last.order + 1 : 0;
 
@@ -102,7 +102,7 @@ const createCrudController = (
     res.status(200).json(new ApiResponse(200, null, `${name} deleted successfully`));
   });
 
-  // body: { ids: ["id1", "id2", ...] } nayi order me
+  // body: { ids: ["id1", "id2", ...] } in the new order
   const reorder = asyncHandler(async (req, res) => {
     const { ids } = req.body;
     if (!Array.isArray(ids) || ids.length === 0) {

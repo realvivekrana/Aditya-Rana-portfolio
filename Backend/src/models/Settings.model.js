@@ -27,12 +27,12 @@ const settingsSchema = new mongoose.Schema(
     primaryColor: {
       type: String,
       trim: true,
-      default: "#0ea5e9",
+      default: "#0f4a3d",
       match: [/^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6})$/, "Primary color must be a valid hex code"],
     },
     defaultMode: { type: String, enum: ["light", "dark"], default: "light" },
 
-    // Kaunsa section site par dikhana hai
+    // Which sections are visible on the public site
     sections: Object.fromEntries(SECTION_KEYS.map((key) => [key, sectionFlag])),
   },
   { timestamps: true }

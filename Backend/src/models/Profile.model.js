@@ -9,7 +9,7 @@ const profileSchema = new mongoose.Schema(
   {
     fullName: { type: String, trim: true, default: "" },
     tagline: { type: String, trim: true, default: "" },
-    roles: { type: [String], default: [] }, // hero me typing animation ke liye
+    roles: { type: [String], default: [] }, // rotating roles shown in the hero
     bio: { type: String, trim: true, default: "" },
     email: { type: String, trim: true, lowercase: true, default: "" },
     phone: { type: String, trim: true, default: "" },

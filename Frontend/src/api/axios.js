@@ -4,14 +4,14 @@ const api = axios.create({
   baseURL: import.meta.env.VITE_API_URL || "http://localhost:5000/api",
 });
 
-// har request me token lagao
+// Attach the token to every request
 api.interceptors.request.use((config) => {
   const token = localStorage.getItem("token");
   if (token) config.headers.Authorization = `Bearer ${token}`;
   return config;
 });
 
-// token expire/invalid ho toh login par bhejo
+// Expired or invalid token: send the admin back to login
 api.interceptors.response.use(
   (response) => response,
   (error) => {

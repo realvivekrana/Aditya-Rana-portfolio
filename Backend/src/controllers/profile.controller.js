@@ -16,7 +16,7 @@ const SOCIAL_FIELDS = [
   "website",
 ];
 
-// roles ko JSON array ya comma-separated string dono se parse karo
+// Accepts roles as a JSON array or a comma-separated string
 const parseRoles = (value) => {
   if (Array.isArray(value)) return value;
   try {

@@ -8,7 +8,7 @@ const createCrudRouter = (controller, { hasImage = false } = {}) => {
 
   router.get("/", controller.getAll);
   router.get("/admin/all", protect, controller.getAllAdmin);
-  router.put("/reorder", protect, controller.reorder); // :id se pehle hona zaroori hai
+  router.put("/reorder", protect, controller.reorder); // must be declared before /:id
   router.post("/", protect, ...imageMiddleware, controller.create);
   router.put("/:id", protect, ...imageMiddleware, controller.update);
   router.delete("/:id", protect, controller.remove);

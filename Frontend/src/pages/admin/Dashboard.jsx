@@ -94,7 +94,7 @@ const Dashboard = () => {
       <div className="rounded-xl bg-white p-5 shadow-sm">
         <h2 className="mb-4 text-lg font-semibold">Recent messages</h2>
         {data.recentMessages.length === 0 ? (
-          <p className="text-slate-500">Abhi koi message nahi aaya.</p>
+          <p className="text-slate-500">No messages yet.</p>
         ) : (
           <ul className="divide-y">
             {data.recentMessages.map((m) => (

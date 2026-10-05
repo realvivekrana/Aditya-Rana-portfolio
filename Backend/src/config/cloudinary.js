@@ -6,7 +6,7 @@ cloudinary.config({
   api_secret: process.env.CLOUDINARY_API_SECRET,
 });
 
-// buffer ko Cloudinary par upload karta hai
+// Uploads a buffer to Cloudinary
 export const uploadToCloudinary = (buffer, folder, resourceType = "image") =>
   new Promise((resolve, reject) => {
     const options = {
@@ -29,7 +29,7 @@ export const uploadToCloudinary = (buffer, folder, resourceType = "image") =>
     stream.end(buffer);
   });
 
-// purani file delete karne ke liye
+// Deletes an old file from Cloudinary
 export const deleteFromCloudinary = async (publicId, resourceType = "image") => {
   if (!publicId) return;
   try {

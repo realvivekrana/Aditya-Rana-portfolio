@@ -1,6 +1,6 @@
 @import "tailwindcss";
 
-/* dark mode: public wrapper par .dark class lagti hai */
+/* Dark mode: the public wrapper gets a .dark class */
 @custom-variant dark (&:where(.dark, .dark *));
 
 @theme {
@@ -12,7 +12,7 @@
   --font-sans: "Manrope", system-ui, sans-serif;
 }
 
-/* light/dark ke hisaab se badalne wale colors */
+/* Colors that change with light/dark mode */
 @theme inline {
   --color-canvas: var(--canvas);
   --color-surface: var(--surface);
@@ -37,7 +37,7 @@ body {
   color: #0f172a;
 }
 
-/* Sirf public site par theme lagta hai (admin panel par asar nahi) */
+/* Theme applies to the public site only (not the admin panel) */
 .theme-public {
   --canvas: #f3f7f5;
   --surface: #ffffff;
@@ -83,14 +83,14 @@ body {
   .input-lux {
     @apply w-full rounded-lg border border-line bg-canvas px-4 py-3 text-sm text-ink outline-none transition placeholder:text-muted/70 focus:border-gold;
   }
-  /* light me emerald, dark me gold */
+  /* emerald in light mode, gold in dark mode */
   .text-accent {
     color: var(--color-primary);
   }
   .dark .text-accent {
     color: var(--color-gold);
   }
-  /* chhote gold text ke liye (contrast achha rehta hai) */
+  /* for small gold text (keeps good contrast) */
   .text-brass {
     color: #7a5f2c;
   }
@@ -150,4 +150,25 @@ body {
   border-radius: 0.5rem;
   margin: 1.5rem 0;
   max-width: 100%;
+}
+/* ---------- Admin panel helpers ---------- */
+@layer components {
+  .label-admin {
+    @apply mb-1.5 block text-sm font-medium text-slate-700;
+  }
+  .input-admin {
+    @apply w-full rounded-lg border border-slate-300 bg-white px-3 py-2.5 text-sm outline-none transition focus:border-primary focus:ring-2 focus:ring-primary/20;
+  }
+  .btn-admin {
+    @apply inline-flex min-h-10 items-center justify-center gap-2 rounded-lg bg-primary px-4 py-2 text-sm font-medium text-white transition hover:opacity-90 disabled:opacity-60;
+  }
+  .btn-admin-ghost {
+    @apply inline-flex min-h-10 items-center justify-center gap-2 rounded-lg border border-slate-300 bg-white px-4 py-2 text-sm font-medium text-slate-700 transition hover:bg-slate-50;
+  }
+  .btn-danger {
+    @apply inline-flex min-h-10 items-center justify-center gap-2 rounded-lg bg-red-600 px-4 py-2 text-sm font-medium text-white transition hover:bg-red-700 disabled:opacity-60;
+  }
+  .icon-btn {
+    @apply flex h-9 w-9 items-center justify-center rounded-lg text-slate-500 transition hover:bg-slate-100 hover:text-slate-900 disabled:opacity-30;
+  }
 }

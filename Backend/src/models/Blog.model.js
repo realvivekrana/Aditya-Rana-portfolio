@@ -23,7 +23,7 @@ const blogSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-// Slug sirf pehli baar banta hai (title badalne par purane links na tootein)
+// The slug is generated only once, so old links keep working after a title change
 blogSchema.pre("validate", async function () {
   if (this.slug || !this.title) return;
 

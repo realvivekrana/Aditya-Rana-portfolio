@@ -1,12 +1,12 @@
 import api from "./axios";
 
-// backend response: { success, statusCode, message, data } -> sirf data return
+// Backend response: { success, statusCode, message, data } -> returns only data
 const unwrap = (promise) => promise.then((res) => res.data.data);
 
 export const getErrorMessage = (error) =>
   error.response?.data?.message || error.message || "Something went wrong";
 
-// Backend ke CRUD factory ke saath match karta hai
+// Mirrors the backend CRUD factory
 const crud = (path) => ({
   getAll: () => unwrap(api.get(path)),
   getAllAdmin: () => unwrap(api.get(`${path}/admin/all`)),

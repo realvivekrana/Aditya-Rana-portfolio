@@ -4,7 +4,7 @@ import asyncHandler from "../utils/asyncHandler.js";
 
 const TEXT_FIELDS = ["siteTitle", "siteDescription", "footerText", "primaryColor", "defaultMode"];
 
-// GET /api/settings  (public) - settings na ho toh defaults return hote hain
+// GET /api/settings  (public) - returns defaults when no settings exist yet
 export const getSettings = asyncHandler(async (req, res) => {
   const settings = (await Settings.findOne()) || new Settings();
   res.status(200).json(new ApiResponse(200, settings));

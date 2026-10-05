@@ -6,7 +6,7 @@ const educationSchema = new mongoose.Schema(
     institution: { type: String, required: [true, "Institution is required"], trim: true },
     field: { type: String, trim: true, default: "" },
     startYear: { type: String, trim: true, default: "" },
-    endYear: { type: String, trim: true, default: "" }, // "Present" bhi likh sakte ho
+    endYear: { type: String, trim: true, default: "" }, // "Present" is allowed
     grade: { type: String, trim: true, default: "" },
     description: { type: String, trim: true, default: "" },
     order: { type: Number, default: 0 },

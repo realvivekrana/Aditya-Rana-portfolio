@@ -12,7 +12,7 @@ import validate from "../middlewares/validate.middleware.js";
 
 const router = Router();
 
-// ek IP se 15 minute me max 5 messages
+// Max 5 messages per IP every 15 minutes
 const contactLimiter = rateLimit({
   windowMs: 15 * 60 * 1000,
   limit: 5,

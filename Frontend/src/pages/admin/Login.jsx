@@ -39,7 +39,7 @@ const Login = () => {
       <form onSubmit={handleSubmit} className="w-full max-w-sm space-y-5 rounded-2xl bg-white p-8 shadow-lg">
         <div className="text-center">
           <h1 className="text-2xl font-bold">Admin Login</h1>
-          <p className="mt-1 text-sm text-slate-500">Portfolio dashboard me sign in karo</p>
+          <p className="mt-1 text-sm text-slate-500">Sign in to manage your portfolio</p>
         </div>
 
         <label className="block">

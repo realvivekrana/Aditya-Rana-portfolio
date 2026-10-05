@@ -7,7 +7,7 @@ export const AuthProvider = ({ children }) => {
   const [admin, setAdmin] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  // page reload par token se admin wapas laao
+  // Restore the admin session from the saved token on page reload
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (!token) {
